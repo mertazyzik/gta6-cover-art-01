@@ -1,12 +1,39 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+html, body { margin: 0; min-height: 100%; background: #17101f; color: #f4eef7; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
+.controls { display: flex; flex-direction: column; gap: 18px; width: 320px; flex: none; }
+.controls header h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.1; letter-spacing: -0.5px; }
+.controls header h1::after { content: ""; display: block; width: 72px; height: 5px; margin-top: 8px; background: linear-gradient(90deg, #ff5a3c, #ff2e88); }
+.controls header p { margin: 0; color: #c9b8d4; font-size: 14px; }
+.group { background: #221628; border: 1px solid #3a2745; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.group h2 { margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: #ff8a6b; }
+.hint { margin: 0; color: #a894b5; font-size: 13px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; }
+label span { color: #d8cbe0; font-weight: 400; }
+input[type=text] { font: inherit; padding: 9px 10px; border: 1px solid #4a3358; border-radius: 7px; background: #17101f; color: #f4eef7; }
+input[type=range] { width: 100%; accent-color: #ff5a3c; }
+.file-label { cursor: pointer; }
+.file-label input { cursor: pointer; }
+button { font: inherit; font-weight: 700; padding: 11px; border: 0; border-radius: 8px; background: linear-gradient(90deg, #ff5a3c, #ff2e88); color: #fff; cursor: pointer; }
+button:hover { filter: brightness(1.1); }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices button { background: #2c1c38; border: 1px solid #4a3358; color: #e8dcf0; padding: 8px 12px; font-weight: 600; border-radius: 20px; }
+.choices button[aria-pressed="true"] { background: #ff2e88; border-color: #ff2e88; color: #fff; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 8px; }
+.thumbs img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; }
+.thumbs img.used { border-color: #ff5a3c; }
+.thumbs img:hover { border-color: #ff2e88; }
+#status { margin: 0; color: #8fe3c8; min-height: 1.2em; font-size: 14px; }
+.preview { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.preview canvas { width: min(72vh, 58vw); height: auto; aspect-ratio: auto; box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55); border-radius: 4px; cursor: crosshair; touch-action: none; }
+.preview-note { margin: 0; color: #a894b5; font-size: 13px; }
 body.shot-cover .controls { display: none; }
-body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+body.shot-cover .app { padding: 0; gap: 0; }
+body.shot-cover .preview { position: static; }
+body.shot-cover .preview-note { display: none; }
+body.shot-cover .preview canvas { width: 100vw; height: 100vh; object-fit: contain; box-shadow: none; border-radius: 0; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; align-items: center; }
+  .controls { width: min(92vw, 480px); }
+  .preview { position: static; }
+  .preview canvas { width: min(92vw, 72vh); }
+}

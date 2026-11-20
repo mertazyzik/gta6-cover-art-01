@@ -10,6 +10,9 @@
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// The app this hands in is Vice Cover Studio: a multi-panel GTA-style cover
+// maker (app/src/cover.js draws the panels, grade and caption; app/src/main.js
+// wires the editor). Screenshots in screenshots/ show its exported covers.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
